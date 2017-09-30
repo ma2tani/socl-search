@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  title: MyString
+  uploadTime: 2017-05-30 01:36:21
+  plays: MyString
+  link: MyString
+  postedTime: 2017-05-30 01:36:21
+
+two:
+  name: MyString
+  title: MyString
+  uploadTime: 2017-05-30 01:36:21
+  plays: MyString
+  link: MyString
+  postedTime: 2017-05-30 01:36:21
