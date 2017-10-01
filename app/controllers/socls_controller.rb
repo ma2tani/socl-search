@@ -14,8 +14,7 @@ class SoclsController < ApplicationController
 
       # HEROKU_URL = 'https://herokusocl.herokuapp.com/api/0/'
       # ELASTICSEARCH_URL = 'http://localhost:9200/socl_index/track/'
-      DEC_NUM = 1
-      
+
       client = Elasticsearch::Client.new host: 'localhost:9200'
       client = Elasticsearch::Client.new urls: 'http://localhost:9200,http://localhost:9201'
       client = Elasticsearch::Client.new log: true
@@ -23,12 +22,14 @@ class SoclsController < ApplicationController
 
       clientEs = EsSoclClient.new
       
-      SEARCH_URL = 'https://herokusocl.herokuapp.com/api/0/'+params[:keyword]+'/tracks'
-      res = open(SEARCH_URL)
+      searchUrl = 'https://herokusocl.herokuapp.com/api/0/'+params[:keyword]+'/tracks'
+      res = open(searchUrl)
 
       #uri = URI.parse('https://herokusocl.herokuapp.com/api/'+params[:keyword])
       #json = Net::HTTP.get(uri)
       code, message = res.status # res.status => ["200", "OK"]
+      docSize = 0
+      artistName, imageUrl = nil
 
       if code == '200'
         result = ActiveSupport::JSON.decode res.read
@@ -51,17 +52,17 @@ class SoclsController < ApplicationController
 
           artistName = socl.name
           imageUrl = socl.image
-          # elasticsearch 登録
-          
+          # insert elasticsearch
           clientEs.index  index: 'socl_index', type: 'track', id: "#{params[:keyword]}_#{id_number}", body: { name: socl.name, title: socl.title, uploadTime: socl.uploadTime, plays: socl.plays, link: socl.link, postedTime: socl.postedTime, image: socl.image }
           # dec id_number
-          id_number -= DEC_NUM
+          id_number -= Settings.DEC_NUM_ONE
 
           #p name: socl.name, title: socl.title, uploadTime: socl.uploadTime, plays: socl.plays, link: socl.link, postedTime: socl.postedTime, image: socl.image
 
         end
 
-        clientEs.index  index: 'socl_index', type: 'history', id: "#{params[:keyword]}", body: { name: sartistName, searchTime: Date.today.to_time, searchName: params[:keyword], link: SEARCH_URL, total: docSize, image: imageUrl }
+        # insert search history
+        clientEs.index  index: 'socl_history', type: 'history', id: "#{params[:keyword]}", body: { name: artistName, searchTime: DateTime.now, searchName: params[:keyword], link: searchUrl, total: docSize, image: imageUrl }
 
       else
         puts "OMG!! #{code} #{message}"
