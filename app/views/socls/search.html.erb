@@ -1,10 +1,17 @@
+<h1>SoundCloud Tracks Register</h1>
 <div class='content'>
   <div id="search-box">
+    <h3>SoundCloud Tracks Register</h3>
     <%= form_tag('/', method: :get) do %>
-        <%= text_field_tag :socl, "",  id: "socl_search", name: "keyword", placeholder: "使い方 : /api/ページ数(0)/アーティスト名/セクション", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
+        <%= text_field_tag :socl, "",  id: "socl_search", name: "keyword", placeholder: "artist url's name", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
+    <% end %>
+
+   <h3>SoundCloud Tracks Search</h3>
+    <%= form_tag('search_result/result', method: :get) do %>
+      <%= text_field_tag :result, "",  id: "es_search", name: "keyword", placeholder: "Let's Search", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
     <% end %>
   </div>
-  <h2>検索結果</h2>
+  <h2>Regist Result</h2>
   <!-- <%= Time.zone.now.prev_month %> -->
   <div id='socl_list'>
     <!-- コメントアウトしておく -->

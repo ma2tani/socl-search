@@ -24,6 +24,9 @@ class SoclsController < ApplicationController
       
       searchUrl = 'https://herokusocl.herokuapp.com/api/0/'+params[:keyword]+'/tracks'
       res = open(searchUrl)
+      searchUrl =  'http://localhost:3000/socls/search/?utf8=✓&keyword='
+      searchUrl = searchUrl+params[:keyword]
+      p searchUrl
 
       #uri = URI.parse('https://herokusocl.herokuapp.com/api/'+params[:keyword])
       #json = Net::HTTP.get(uri)
@@ -47,8 +50,14 @@ class SoclsController < ApplicationController
             item['link'].to_s,
             item['postedTime'].to_s,
             item['image'].to_s,
-          )
-          @socls << socl
+            )
+            @socls << socl
+            if !(socl.name.present?)
+                socl.name = ""
+            end
+            if !(socl.image.present?)
+                socl.image = ""
+            end
 
           artistName = socl.name
           imageUrl = socl.image
@@ -62,7 +71,9 @@ class SoclsController < ApplicationController
         end
 
         # insert search history
-        clientEs.index  index: 'socl_history', type: 'history', id: "#{params[:keyword]}", body: { name: artistName, searchTime: DateTime.now, searchName: params[:keyword], link: searchUrl, total: docSize, image: imageUrl }
+        if docSize.present?
+          clientEs.index  index: 'socl_history', type: 'history', id: "#{params[:keyword]}", body: { name: artistName, searchTime: DateTime.now, searchName: params[:keyword], searchUrl: searchUrl, total: docSize, image: imageUrl }
+        end
 
       else
         puts "OMG!! #{code} #{message}"

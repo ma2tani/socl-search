@@ -33,8 +33,14 @@ gem 'jbuilder', '~> 2.5'
 gem 'config'
 
 # Elasticsearch::API
-gem 'elasticsearch-api', git: 'https://github.com/elastic/elasticsearch-ruby.git'
+gem 'elasticsearch-api', git: 'git://github.com/elastic/elasticsearch-ruby.git'
 gem 'elasticsearch-transport', git: 'https://github.com/elastic/elasticsearch-ruby.git'
+# Elasticsearch::Rails
+#gem 'elasticsearch-model', git: 'git://github.com/elastic/elasticsearch-rails.git'
+#gem 'elasticsearch-rails', git: 'git://github.com/elastic/elasticsearch-rails.git'
+
+# ES response hash
+gem 'hashie'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
