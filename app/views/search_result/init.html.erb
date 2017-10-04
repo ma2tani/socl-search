@@ -1,0 +1,28 @@
+<h1>SoundCloud Tracks Search</h1>
+<div class='content'>
+  <div id="search-box">
+    <h3>Registed Artist Search</h3>
+    <%= form_tag('init', method: :get) do %>
+        <%= text_field_tag :history, "",  id: "es_history", name: "keyword", placeholder: "Let's Search", style: "width: 250px;"%><button title="検索" type="submit">Search</button>
+    <% end %>
+
+    <h3>Registed Tracks Search</h3>
+    <%= form_tag('result', method: :get) do %>
+        <%= text_field_tag :result, "",  id: "es_search", name: "keyword", placeholder: "Let's Search", style: "width: 250px;"%><button title="検索" type="submit">Search</button>
+    <% end %>
+  </div>
+  <h2>Search Result</h2>
+    <!-- <%= Time.zone.now.prev_month %> -->
+  <div id='result_history'>
+    <!-- コメントアウトしておく -->
+   <!-- <%= render partial: 'result_history' %> -->
+   <%= render partial: 'result_history' %> 
+  </div>
+
+  <!-- <%= Time.zone.now.prev_month %> -->
+  <div id='result_list'>
+    <!-- コメントアウトしておく -->
+   <!-- <%= render partial: 'result_list' %> -->
+   <%= render partial: 'result_list' %> 
+  </div>
+</div>

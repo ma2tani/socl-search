@@ -1,0 +1,18 @@
+<% if @histories.present? %>
+  <table width="80%">
+  <% @histories.each do |history| %>
+    <tr>
+      <td><%= image_tag history.image, :size=>"100x100" %></td>
+      <%= content_tag :td, history.searchName %>
+      <% if Time.zone.now.prev_month < history.searchTime[0..9].to_date %>
+        <%= content_tag :td, history.name, :class=>"bg_fuchsia" %>
+      <% else %>
+        <%= content_tag :td, history.name %>
+      <% end %>
+      <%= content_tag :td, history.total %>
+      <td><%= link_to history.searchUrl %></td>
+      <%= content_tag :td, history.searchTime %>
+    </tr>
+  <% end %>
+  </table>
+<% end %>

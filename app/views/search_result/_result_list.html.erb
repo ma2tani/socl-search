@@ -1,0 +1,20 @@
+<% if @results.present? %>
+  <table width="80%">
+  <% @results.each do |result| %>
+    <tr>
+      <td><%= image_tag result.image, :size=>"100x100" %></td>
+      <%= content_tag :td, result.name %>
+      <% if Time.zone.now.prev_month < result.uploadTime[0..9].to_date %>
+        <%= content_tag :td, result.title, :class=>"bg_fuchsia" %>
+      <% else %>
+        <%= content_tag :td, result.title %>
+      <% end %>
+      <%= content_tag :td, result.uploadTime %>
+      <%= content_tag :td, result.plays %>
+      <td><%= link_to result.link %></td>
+      <%= content_tag :td, result.postedTime %>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+

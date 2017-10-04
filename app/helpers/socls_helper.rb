@@ -1,0 +1,2 @@
+module SoclsHelper
+end
