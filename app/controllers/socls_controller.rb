@@ -22,7 +22,8 @@ class SoclsController < ApplicationController
 
       clientEs = EsSoclClient.new
       
-      searchUrl = 'https://herokusocl.herokuapp.com/api/0/'+params[:keyword]+'/tracks'
+      # searchUrl = 'https://herokusocl.herokuapp.com/api/0/'+params[:keyword]+'/tracks'
+      searchUrl = 'http://localhost:5000/api/0/'+params[:keyword]+'/tracks'
       res = open(searchUrl)
       searchUrl =  'http://localhost:3000/socls/search/?utf8=✓&keyword='
       searchUrl = searchUrl+params[:keyword]

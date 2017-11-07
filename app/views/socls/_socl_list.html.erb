@@ -2,7 +2,8 @@
   <table width="80%">
   <% @socls.each do |socl| %>
     <tr>
-      <td><%= image_tag socl.image, :size=>"100x100" %></td>
+      <%# <td><%= image_tag socl.image, :size=>"50x50" %>
+      <%# </td> %> 
       <%= content_tag :td, socl.name  %>
       <% if Time.zone.now.prev_month < socl.uploadTime[0..9].to_date %>
         <%= content_tag :td, socl.title, :class=>"bg_fuchsia" %>

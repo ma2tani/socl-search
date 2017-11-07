@@ -1,0 +1,15 @@
+current directory: /Users/MK/ruby_workspace/socl_search_clone/vendor/bundler/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+/Users/MK/.rbenv/versions/2.4.2/bin/ruby -r ./siteconf20171107-56684-11rcxd3.rb extconf.rb
+creating Makefile
+
+current directory: /Users/MK/ruby_workspace/socl_search_clone/vendor/bundler/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /Users/MK/ruby_workspace/socl_search_clone/vendor/bundler/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.bundle
+
+current directory: /Users/MK/ruby_workspace/socl_search_clone/vendor/bundler/ruby/2.4.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 cruby.bundle ./.gem.20171107-56684-dzvlyx/bindex

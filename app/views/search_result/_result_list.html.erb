@@ -1,8 +1,10 @@
 <% if @results.present? %>
-  <table width="80%">
+  <table class="result" width="80%">
   <% @results.each do |result| %>
     <tr>
-      <td><%= image_tag result.image, :size=>"100x100" %></td>
+      <% if result.image %>
+        <td><%= image_tag result.image, :size=>"100x100" %></td>
+      <% end %>
       <%= content_tag :td, result.name %>
       <% if Time.zone.now.prev_month < result.uploadTime[0..9].to_date %>
         <%= content_tag :td, result.title, :class=>"bg_fuchsia" %>
